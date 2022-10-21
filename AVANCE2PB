@@ -1,0 +1,175 @@
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <string.h>
+#include <conio.h>
+#include <stdio.h>
+
+
+using namespace std;
+
+struct MichiPop
+{
+    string nomb, clasif, genero, carac, descrip, consola;
+    int codicom, codigo, fecha;
+    float iva = 0.16, pretot, preuni;
+};
+int main() {
+
+    MichiPop tienda[3];
+    int opc, busq;
+
+    do {
+
+        cout<<("\t ****-Bienvenido a Michipop-****\n")<<endl;
+        cout<<("\t ****-Ingrese una opcion porfavor.-****\n")<<endl;
+        cout<<(" 1.-AGREGAR JUEGO\n 2.-MODIFICAR JUEGO\n 3.-ELIMINAR JUEGO\n 4.-JUEGOS VIGENTES\n 5.-LIMPIAR PANTALLA\n 6.-SALIR\n")<<endl;
+        
+        scanf_s("%d", &opc);
+
+        switch (opc)
+        {
+        case 1:
+
+            for (int i = 0; i < 3; i++)
+            {
+                tienda[i].codicom = 39291735 + i;
+                cout<<("NUM. DE COMPRA: %d \n", tienda[i].codicom)<<endl;
+                int sal = 1;
+                do
+                {
+                    cout<<("Ingrese el codigo del juego: \n")<<endl;
+                    scanf_s("%d", &tienda[i].codigo);
+                    if (tienda[i].codigo == tienda[i - 1].codigo || tienda[i].codigo == tienda[i - 2].codigo)
+                    {
+                        cout<<("El codigo de juego ya existe, ingrese otro: \n")<<endl;
+                    }
+                    else
+                    {
+                        sal = 2;
+                    }
+                } while (sal == 1);
+
+                cout<<("Ingrese el año de lanzamiento : \n")<<endl;
+                scanf_s("%d", &tienda[i].fecha);
+                cout<<("Ingrese el nombre del juego: \n")<<endl;
+                cin.ignore();
+                getline(cin, tienda[i].nomb);
+                cout<<("Ingrese la clasificacion: \n")<<endl;
+                cin.ignore();
+                getline(cin, tienda[i].clasif);
+                cout<<("Ingrese el genero: \n")<<endl;
+                cin.ignore();
+                getline(cin, tienda[i].genero);
+                cout<<("Ingrese las caracteristicas : \n")<<endl;
+                cin.ignore();
+                getline(cin, tienda[i].carac);
+                cout<<("Ingrese la descripcion del juego: \n")<<endl;
+                cin.ignore();
+                getline(cin, tienda[i].descrip);
+                cout<<("Ingrese la consola del juego: \n")<<endl;
+                cin.ignore();
+                getline(cin, tienda[i].consola);
+                cout<<("Ingrese el precio del juego: \n")<<endl;
+                scanf_s("%f", &tienda[i].preuni);
+                cout<<("Su impuesto de compra es de: %f \n", tienda[i].iva)<<endl;
+                tienda[i].pretot = tienda[i].preuni * 1.16;
+                cout<<("El precio total de su compra es de: %f\n", tienda[i].pretot)<<endl;
+            }
+            break;
+        case 2:
+            cout<<("\t +++NO SALGA...+++\n")<<endl;
+            system("pause");
+
+            break;
+
+        case 3:
+            cout<<("Ingrese el Codigo  a Eliminar:\n")<<endl;
+            scanf_s("%d", &busq);
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (busq == tienda[i].codigo)
+                {
+                    tienda[i].codigo = 0;
+                }
+            }
+            break;
+
+        case 4:
+            int opc2;
+            cout<<("ver los articulos: \n")<<endl;
+            cout<<("1.-Codigo de Juego\n 2.-Lista\n")<<endl;
+            scanf_s("%d", &opc2);
+
+            if (opc2 == 1)
+            {
+                cout<<("Ingrese el codigo \n")<<endl;
+                scanf_s("%d", &busq);
+
+                for (int i = 0; i < 3; i++)
+                {
+
+
+                    if (busq == tienda[i].codigo)
+                    {
+                        cout<<("NO.DE COMPRA: %d \n", tienda[i].codicom)<<endl;
+                        cout<<("Codigo de juego: %d \n", tienda[i].codigo)<<endl;
+                        cout<<("Fecha de lanzamiento: %d \n", tienda[i].fecha)<<endl;
+                        cout<<("Nombre del juego: %s \n", tienda[i].nomb.c_str())<<endl;
+                        cout<<("Clasificacion del juego: %s \n", tienda[i].clasif.c_str())<<endl;
+                        cout<<("Genero del Juego: %s \n", tienda[i].genero.c_str())<<endl;
+                        cout<<("Caracteristicas del Juego: %s \n", tienda[i].carac.c_str())<<endl;
+                        cout<<("Descripcion del Juego: %s \n", tienda[i].descrip.c_str())<<endl;
+                        cout<<("Consola del Juego: %s \n", tienda[i].consola.c_str());
+                        cout<<("Precio del Juego: %f \n", tienda[i].preuni)<<endl;
+                        cout<<("Precio Total del Juego : %f \n", tienda[i].pretot)<<endl;
+                        
+
+                    }
+                }
+
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (tienda[i].codigo != 0)
+                    {
+                        cout<<("NO.DE COMPRA: %d \n", tienda[i].codicom)<<endl;
+                        cout<<("Codigo de juego: %d \n", tienda[i].codigo)<<endl;
+                        cout<<("Fecha de lanzamiento: %d \n", tienda[i].fecha)<<endl;
+                        cout<<("Nombre del juego: %s \n", tienda[i].nomb.c_str())<<endl;
+                        cout<<("Clasificacion del juego: %s \n", tienda[i].clasif.c_str())<<endl;
+                        cout<<("Genero del Juego: %s \n", tienda[i].genero.c_str())<<endl;
+                        cout<<("Caracteristicas del Juego: %s \n", tienda[i].carac.c_str())<<endl;
+                        cout<<("Descripcion del Juego: %s \n", tienda[i].descrip.c_str())<<endl;
+                        cout<<("Consola del Juego: %s \n", tienda[i].consola.c_str())<<endl;
+                        cout<<("Precio del Juego: %f \n", tienda[i].preuni)<<endl;
+                        cout<<("Precio Total del Juego : %f \n", tienda[i].pretot)<<endl;
+                       
+                    }
+                }
+            }
+
+            break;
+
+        case 5:
+
+            cout<<("\t /////****-Regresando al inicio-****/////\n")<<endl; 
+            system("pause");
+            system("cls");
+
+            break;
+
+        case 6:
+            cout<<("\t /////****-Muchas Gracias Vuelva Pronto-****/////\n")<<endl;
+            break;
+
+        default:
+            cout<<("\t /////****-Ingrese una opcion correcta, porfavor-****/////\n")<<endl;
+            break;
+        }
+    } while (opc != 6);
+    system("pause");
+}
